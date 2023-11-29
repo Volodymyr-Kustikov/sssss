@@ -1,38 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
-import { Logo } from './logo/logo';
-import { Content } from './content/content';
-import { NavBar } from './navBar/navBar';
-import { SideBar } from './sideBar/sideBar';
+import React from 'react';
+import rolesData from './db.json'
 
-function App() {
+
+const RoleList = () => {
   return (
-    <div className="App">
-
-      <div className='header'>
-
-        <div className='logo'>
-
-          < Logo />
-        </div>
-
-        <div className='navBar'>
-          < NavBar />
-        </div>
-      </div>
-
-
-      <div className='sideBar'>
-        < SideBar />
-      </div>
-
-
-      <div className='content'>
-
-        < Content />
-      </div>
+    <div>
+      <h1>Таблиця ролей</h1>
+      <table className='roles_table'>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Роль</th>
+            <th>Функції</th>
+            <th>Зони відповідальності</th>
+            <th>Підпорядкування</th>
+          </tr>
+        </thead>
+        <tbody className='roles_table_body'>
+          {rolesData.roles.map(role => (
+            <tr key={role.id}>
+              <td>{role.id}</td>
+              <td>{role.role}</td>
+              <td>{role.functions.join(", ")}</td>
+              <td>{role.zones_of_responsibility.join(", ")}</td>
+              <td>
+                <td className='bebra'>{role.subordination}</td>
+                <td className='bebra'>snnnnn </td>
+              </td>
+              
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
-}
+};
 
-export default App;
+export default RoleList;
